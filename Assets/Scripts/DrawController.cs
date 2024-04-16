@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DrawController : MonoBehaviour
 {
@@ -33,6 +34,8 @@ public class DrawController : MonoBehaviour
     private EdgeCollider2D currentLineCollider;
     private List<Vector2> currentLinePositions = new List<Vector2>();
 
+    public UnityEvent<List<Vector2>> OnLineFinished = new UnityEvent<List<Vector2>>();
+
     void Start()
     {
     }
@@ -40,26 +43,21 @@ public class DrawController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            InitLine();
-        }
+        if (Input.GetMouseButtonDown(0))        
+            InitLine();       
 
-        if(Input.GetMouseButton(0) && currentDrawingTime<=drawingTimeLimit)
-        {
+        if(Input.GetMouseButton(0) && currentDrawingTime<=drawingTimeLimit)        
             Draw();
-        }
 
-        if (Input.GetMouseButtonUp(0) && isLineDissapear)
-        {
-            Destroy(currentLine);
-        }
-
-        if (Input.GetKeyDown(KeyCode.C))
-        {
+        if (Input.GetKeyDown(KeyCode.C))       
             clearAllLines();
-        }
 
+        if (Input.GetMouseButtonUp(0))
+        {
+            OnLineFinished.Invoke(currentLinePositions);
+            if(isLineDissapear)
+                Destroy(currentLine);
+        }
     }
 
     private void clearAllLines()
