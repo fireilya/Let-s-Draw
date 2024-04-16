@@ -16,9 +16,8 @@ public class PartToDraw : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void VerifyStroke(List<Vector2> linePointPositiions)
     {
-        
+
     }
 }
