@@ -56,7 +56,7 @@ public class DrawController : MonoBehaviour
         {
             OnLineFinished.Invoke(currentLinePositions);
             if(isLineDissapear)
-                Destroy(currentLine);
+                Destroy(currentLine.gameObject);
         }
     }
 
