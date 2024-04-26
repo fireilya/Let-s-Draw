@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
@@ -20,17 +21,26 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private List<Button> buttons;
 
-    private static Button currentDisableButton;
+    private Button currentDisableButton;
+    private int sceneIndexToLoad;
 
     void Start()
     {
         header.text = levelCards[0].header;
         description.text = levelCards[0].description;
         levelPreview.sprite = levelCards[0].levelPreview;
+        sceneIndexToLoad = levelCards[0].levelSceneIndex;
         buttons[0].interactable = false;
         currentDisableButton = buttons[0];
+        sceneIndexToLoad = levelCards[0].levelSceneIndex;
     }
-    
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))        
+            Application.Quit();        
+    }
+
     public void ChangeLevelCard(int levelIndex)
     {
         currentDisableButton.interactable = true;
@@ -39,5 +49,11 @@ public class MainMenu : MonoBehaviour
         header.text = levelCards[levelIndex].header;
         description.text = levelCards[levelIndex].description;
         levelPreview.sprite = levelCards[levelIndex].levelPreview;
+        sceneIndexToLoad = levelCards[levelIndex].levelSceneIndex;
+    }
+
+    public void LoadLevelScene()
+    {
+        SceneManager.LoadScene(sceneIndexToLoad);
     }
 }

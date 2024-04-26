@@ -10,5 +10,5 @@ public class LevelCard : ScriptableObject
     [TextArea(5, 20)]
     public string description;
     public Sprite levelPreview;
-
+    public int levelSceneIndex;
 }
