@@ -22,3 +22,4 @@ MonoBehaviour:
     \u043D\u0430\u0445\u043E\u0434\u044F\u0449\u0435\u0433\u043E\u0441\u044F \u043D\u0430
     \u0441\u0446\u0435\u043D\u0435.."
   levelPreview: {fileID: 21300000, guid: fa6765c3e8a731b438711a7da426502e, type: 3}
+  levelSceneIndex: 3
