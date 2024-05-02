@@ -46,6 +46,7 @@ public class DrawController : MonoBehaviour
 
     void Start()
     {
+        State = new DrawControllerState();
         State.isCollisionEnabled = isLineWithColider;
         State.isEraseEnabled = !isLineDissapear;
         State.drawingTimeLimit = drawingTimeLimit;
