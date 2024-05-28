@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public void GoToMainMenu() { SceneManager.LoadScene(0); }
-    public void Resume() { Time.timeScale = 1f; gameObject.SetActive(false); }
+    [SerializeField]
+    private DrawController drawController;
+    void Update() { if (Input.GetKeyDown(KeyCode.Escape)) Resume(); }
+    public void GoToMainMenu() { Time.timeScale = 1; SceneManager.LoadScene(0); }
+    public void Resume() { Time.timeScale = 1; drawController.IsDrawingEnabled = true; gameObject.SetActive(false); }
 }

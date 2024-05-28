@@ -10,6 +10,9 @@ public class MainCharecter : MonoBehaviour
     [SerializeField]
     private float maxVelocity;
 
+    [SerializeField]
+    private LevelUI levelUI;
+
     private Rigidbody2D rb;
     void Start()
     {
@@ -19,8 +22,8 @@ public class MainCharecter : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag=="Finish")      
-            Debug.Log("VICTORY");
+        if (collision.gameObject.tag == "Finish")
+            levelUI.ShowLevelResult();
     }
 
     // Update is called once per frame

@@ -438,6 +438,8 @@ MonoBehaviour:
   timeIndicator: {fileID: 176736356}
   isPunchEnabled: 0
   TimeSection: {fileID: 1464793345}
+  pauseMenu: {fileID: 0}
+  resultMenu: {fileID: 0}
 --- !u!1 &309860546
 GameObject:
   m_ObjectHideFlags: 0
@@ -1915,7 +1917,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: -8.580001, y: 7.4000006}
   m_AnchorMax: {x: -8.580001, y: 7.4000006}
-  m_AnchoredPosition: {x: 444.738, y: -376.2}
+  m_AnchoredPosition: {x: 436.9, y: -376.2}
   m_SizeDelta: {x: 17.5247, y: 18}
   m_Pivot: {x: -0.000000007450581, y: 0.9999998}
 --- !u!114 &1202471654

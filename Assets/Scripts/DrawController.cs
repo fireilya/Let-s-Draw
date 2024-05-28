@@ -48,6 +48,8 @@ public class DrawController : MonoBehaviour
     public UnityEvent<List<Vector2>> OnLineFinished = new UnityEvent<List<Vector2>>();
     public DrawControllerState State { get; private set; } = new DrawControllerState();
 
+    public bool IsDrawingEnabled { get; set; } = true;
+
     void Awake()
     {
         State.isCollisionEnabled = isLineWithColider;
@@ -60,6 +62,7 @@ public class DrawController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!IsDrawingEnabled) { return; }
         if (Input.GetMouseButtonDown(0))        
             InitLine();       
 
@@ -71,10 +74,11 @@ public class DrawController : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
+            State.currentDrawingTime = 0;
+            if (currentLine == null) return;
             OnLineFinished.Invoke(currentLinePositions);
             if(isLineDissapear)
                 Destroy(currentLine.gameObject);
-            State.currentDrawingTime = 0;
         }
     }
 

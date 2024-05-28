@@ -29,6 +29,12 @@ public class LevelUI : MonoBehaviour
     [SerializeField]
     private GameObject TimeSection;
 
+    [SerializeField]
+    private PauseMenu pauseMenu;
+
+    [SerializeField]
+    private ResultMenu resultMenu;
+
     void Start()
     {
         timeButton.interactable = drawController.State.isDrawTimeLimitEnabled;
@@ -48,5 +54,19 @@ public class LevelUI : MonoBehaviour
             var drawingTimeLimit = drawController.State.drawingTimeLimit;
             timeIndicator.fillAmount = (drawingTimeLimit - currentDrawingTime) / drawingTimeLimit;
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Time.timeScale = 0;
+            drawController.IsDrawingEnabled = false;
+            pauseMenu.gameObject.SetActive(true);
+        }
+    }
+
+    public void ShowLevelResult()
+    {
+        Time.timeScale = 0;
+        drawController.IsDrawingEnabled = false;
+        resultMenu.gameObject.SetActive(true);
     }
 }
