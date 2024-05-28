@@ -35,11 +35,8 @@ public class MainMenu : MonoBehaviour
         sceneIndexToLoad = levelCards[0].levelSceneIndex;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))        
-            Application.Quit();        
-    }
+    public void Quit() { Application.Quit(); }
+    
 
     public void ChangeLevelCard(int levelIndex)
     {
