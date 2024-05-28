@@ -11,6 +11,7 @@ public class DrawController : MonoBehaviour
         public bool isEraseEnabled;
         public float drawingTimeLimit;
         public float currentDrawingTime;
+        public bool isDrawTimeLimitEnabled;
     };
 
     [SerializeField]
@@ -24,7 +25,7 @@ public class DrawController : MonoBehaviour
     private float lineWidth;
 
     [SerializeField]
-    [Range(0f, float.MaxValue)]
+    [Range(0f, 15f)]
     private float drawingTimeLimit;
 
     [SerializeField]
@@ -32,6 +33,9 @@ public class DrawController : MonoBehaviour
 
     [SerializeField]
     private bool isLineWithColider;
+
+    [SerializeField]
+    private bool isDrawTimeLimit;
 
     [SerializeField]
     private Sprite lineTexture;
@@ -42,15 +46,15 @@ public class DrawController : MonoBehaviour
     private List<Vector2> currentLinePositions = new List<Vector2>();
 
     public UnityEvent<List<Vector2>> OnLineFinished = new UnityEvent<List<Vector2>>();
-    public DrawControllerState State { get; private set; }
+    public DrawControllerState State { get; private set; } = new DrawControllerState();
 
-    void Start()
+    void Awake()
     {
-        State = new DrawControllerState();
         State.isCollisionEnabled = isLineWithColider;
         State.isEraseEnabled = !isLineDissapear;
         State.drawingTimeLimit = drawingTimeLimit;
         State.currentDrawingTime = 0;
+        State.isDrawTimeLimitEnabled = isDrawTimeLimit;
     }
 
     // Update is called once per frame
@@ -70,6 +74,7 @@ public class DrawController : MonoBehaviour
             OnLineFinished.Invoke(currentLinePositions);
             if(isLineDissapear)
                 Destroy(currentLine.gameObject);
+            State.currentDrawingTime = 0;
         }
     }
 
@@ -87,7 +92,10 @@ public class DrawController : MonoBehaviour
         var cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         currentLine.SetPosition(currentLine.positionCount - 1, new Vector3(cursorPosition.x, cursorPosition.y, currentLineZIndex));
         currentLinePositions.Add(new Vector2(cursorPosition.x, cursorPosition.y));
-        State.currentDrawingTime += Time.deltaTime;
+
+        if (isDrawTimeLimit)
+            State.currentDrawingTime += Time.deltaTime;
+        
         if (isLineWithColider)
         {
             currentLineCollider.SetPoints(currentLinePositions);
@@ -107,7 +115,6 @@ public class DrawController : MonoBehaviour
 
         currentLine.textureScale = new Vector2(1f / lineWidth, -1);
         currentLineZIndex -= 1e-3f;
-        State.currentDrawingTime = 0;
         if (isLineWithColider)
         {
             currentLineCollider = currentLine.GetComponent<EdgeCollider2D>();

@@ -37,7 +37,6 @@ public class MainMenu : MonoBehaviour
 
     public void Quit() { Application.Quit(); }
     
-
     public void ChangeLevelCard(int levelIndex)
     {
         currentDisableButton.interactable = true;
