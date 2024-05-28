@@ -437,6 +437,7 @@ MonoBehaviour:
   punchButton: {fileID: 309860548}
   timeIndicator: {fileID: 176736356}
   isPunchEnabled: 0
+  TimeSection: {fileID: 1464793345}
 --- !u!1 &309860546
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,7 +1026,7 @@ MonoBehaviour:
   drawingTimeLimit: 5
   isLineDissapear: 0
   isLineWithColider: 0
-  isDrawTimeLimitEnabled: 0
+  isDrawTimeLimit: 1
   lineTexture: {fileID: 0}
   OnLineFinished:
     m_PersistentCalls:
@@ -1215,7 +1216,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -367.49973, y: 412.99}
+  m_AnchoredPosition: {x: -367.49973, y: 418.94}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &637073405
