@@ -13,6 +13,9 @@ public class MainCharecter : MonoBehaviour
     [SerializeField]
     private LevelUI levelUI;
 
+    [SerializeField]
+    private DrawController drawController;
+
     private Rigidbody2D rb;
     void Start()
     {
@@ -29,7 +32,7 @@ public class MainCharecter : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.V) && drawController.State.isMoveSignalEnabled)
         {
             var previousVelocity = rb.velocity;
             if (rb.bodyType == RigidbodyType2D.Static)

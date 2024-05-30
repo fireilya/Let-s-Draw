@@ -9,5 +9,5 @@ public class PauseMenu : MonoBehaviour
     private DrawController drawController;
     void Update() { if (Input.GetKeyDown(KeyCode.Escape)) Resume(); }
     public void GoToMainMenu() { Time.timeScale = 1; SceneManager.LoadScene(0); }
-    public void Resume() { Time.timeScale = 1; drawController.IsDrawingEnabled = true; gameObject.SetActive(false); }
+    public void Resume() { Time.timeScale = 1; drawController.State.isDrawingEnabled = true; gameObject.SetActive(false); }
 }

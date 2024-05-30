@@ -18,13 +18,10 @@ public class LevelUI : MonoBehaviour
     private Button eraseButton;
 
     [SerializeField]
-    private Button punchButton;
+    private Button moveSignalButton;
 
     [SerializeField]
     private Image timeIndicator;
-
-    [SerializeField]
-    private bool isPunchEnabled;
 
     [SerializeField]
     private GameObject TimeSection;
@@ -35,14 +32,21 @@ public class LevelUI : MonoBehaviour
     [SerializeField]
     private ResultMenu resultMenu;
 
+    [SerializeField]
+    private Color comonColor;
+
+    [SerializeField]
+    private Color enabledColor;
+
     void Start()
     {
-        timeButton.interactable = drawController.State.isDrawTimeLimitEnabled;
         TimeSection.SetActive(drawController.State.isDrawTimeLimitEnabled);
-        collisionButton.interactable = drawController.State.isCollisionEnabled;
-        eraseButton.interactable = drawController.State.isEraseEnabled;
-        punchButton.interactable = isPunchEnabled;
+        moveSignalButton.interactable = drawController.State.isMoveSignalEnabled;
         timeIndicator.fillAmount = 1;
+        collisionButton.image.color = drawController.State.isCollisionEnabled ? enabledColor : comonColor;
+        timeButton.image.color = drawController.State.isDrawTimeLimitEnabled ? enabledColor : comonColor;
+        eraseButton.image.color = drawController.State.isEraseEnabled ? enabledColor : comonColor;
+        moveSignalButton.image.color = drawController.State.isMoveSignalEnabled ? enabledColor : comonColor;
     }
 
     // Update is called once per frame
@@ -58,7 +62,7 @@ public class LevelUI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Time.timeScale = 0;
-            drawController.IsDrawingEnabled = false;
+            drawController.State.isDrawingEnabled = false;
             pauseMenu.gameObject.SetActive(true);
         }
     }
@@ -66,7 +70,33 @@ public class LevelUI : MonoBehaviour
     public void ShowLevelResult()
     {
         Time.timeScale = 0;
-        drawController.IsDrawingEnabled = false;
+        drawController.State.isDrawingEnabled = false;
         resultMenu.gameObject.SetActive(true);
+    }
+
+    public void ToggleCollision()
+    {
+        drawController.State.isCollisionEnabled = !drawController.State.isCollisionEnabled;
+        collisionButton.image.color = drawController.State.isCollisionEnabled ? enabledColor : comonColor;
+        drawController.UpdateLinesColliders();
+    }
+
+    public void ToggleTimeLimit()
+    {
+        drawController.State.isDrawTimeLimitEnabled = !drawController.State.isDrawTimeLimitEnabled;
+        timeButton.image.color = drawController.State.isDrawTimeLimitEnabled ? enabledColor : comonColor;
+        TimeSection.SetActive(drawController.State.isDrawTimeLimitEnabled);
+    }
+
+    public void ToggleErase()
+    {
+        drawController.State.isEraseEnabled = !drawController.State.isEraseEnabled;
+        eraseButton.image.color = drawController.State.isEraseEnabled ? enabledColor : comonColor;
+    }
+
+    public void ToggleMoveSignal()
+    {
+        drawController.State.isMoveSignalEnabled = !drawController.State.isMoveSignalEnabled;
+        moveSignalButton.image.color = drawController.State.isMoveSignalEnabled ? enabledColor : comonColor;
     }
 }

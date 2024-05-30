@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class DrawController : MonoBehaviour
 {
@@ -12,6 +14,8 @@ public class DrawController : MonoBehaviour
         public float drawingTimeLimit;
         public float currentDrawingTime;
         public bool isDrawTimeLimitEnabled;
+        public bool isMoveSignalEnabled;
+        public bool isDrawingEnabled;
     };
 
     [SerializeField]
@@ -38,7 +42,13 @@ public class DrawController : MonoBehaviour
     private bool isDrawTimeLimit;
 
     [SerializeField]
+    private bool isMoveSignalEnabled;
+
+    [SerializeField]
     private Sprite lineTexture;
+
+    [SerializeField]
+    private GraphicRaycaster UIRaycaster;
 
     private LineRenderer currentLine;
     private float currentLineZIndex = 0;
@@ -46,9 +56,7 @@ public class DrawController : MonoBehaviour
     private List<Vector2> currentLinePositions = new List<Vector2>();
 
     public UnityEvent<List<Vector2>> OnLineFinished = new UnityEvent<List<Vector2>>();
-    public DrawControllerState State { get; private set; } = new DrawControllerState();
-
-    public bool IsDrawingEnabled { get; set; } = true;
+    public DrawControllerState State { get; set; } = new DrawControllerState();
 
     void Awake()
     {
@@ -57,20 +65,28 @@ public class DrawController : MonoBehaviour
         State.drawingTimeLimit = drawingTimeLimit;
         State.currentDrawingTime = 0;
         State.isDrawTimeLimitEnabled = isDrawTimeLimit;
+        State.isMoveSignalEnabled = isMoveSignalEnabled;
+        State.isDrawingEnabled = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!IsDrawingEnabled) { return; }
+        Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        var pointerEventData = new PointerEventData(FindObjectOfType<EventSystem>());
+        pointerEventData.position = Input.mousePosition;
+        var graphicsRaycastResults = new List<RaycastResult>();
+        UIRaycaster.Raycast(pointerEventData, graphicsRaycastResults);
+        if (Physics2D.Raycast(mouseWorldPosition, Vector2.zero) || graphicsRaycastResults.Count != 0)
+        {
+            Debug.Log("here");
+        }
+        if (!State.isDrawingEnabled) { return; }
         if (Input.GetMouseButtonDown(0))        
             InitLine();       
 
         if(Input.GetMouseButton(0) && State.currentDrawingTime<=drawingTimeLimit)        
             Draw();
-
-        if (Input.GetKeyDown(KeyCode.C))       
-            clearAllLines();
 
         if (Input.GetMouseButtonUp(0))
         {
@@ -82,11 +98,19 @@ public class DrawController : MonoBehaviour
         }
     }
 
-    private void clearAllLines()
+    public void clearAllLines()
     {
         foreach(var line in FindObjectsOfType<LineRenderer>())
         {
             Destroy(line.gameObject);
+        }
+    }
+
+    public void UpdateLinesColliders()
+    {
+        foreach (var line in FindObjectsOfType<LineRenderer>())
+        {
+            line.GetComponent<EdgeCollider2D>().enabled = State.isCollisionEnabled;
         }
     }
 
@@ -97,13 +121,12 @@ public class DrawController : MonoBehaviour
         currentLine.SetPosition(currentLine.positionCount - 1, new Vector3(cursorPosition.x, cursorPosition.y, currentLineZIndex));
         currentLinePositions.Add(new Vector2(cursorPosition.x, cursorPosition.y));
 
-        if (isDrawTimeLimit)
+        if (State.isDrawTimeLimitEnabled)
             State.currentDrawingTime += Time.deltaTime;
         
-        if (isLineWithColider)
-        {
+        if (State.isCollisionEnabled)
             currentLineCollider.SetPoints(currentLinePositions);
-        }
+        
     }
 
     private void InitLine()
@@ -119,7 +142,7 @@ public class DrawController : MonoBehaviour
 
         currentLine.textureScale = new Vector2(1f / lineWidth, -1);
         currentLineZIndex -= 1e-3f;
-        if (isLineWithColider)
+        if (State.isCollisionEnabled)
         {
             currentLineCollider = currentLine.GetComponent<EdgeCollider2D>();
             currentLineCollider.enabled = true;
