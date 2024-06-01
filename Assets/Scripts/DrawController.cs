@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -28,6 +30,9 @@ public class DrawController : MonoBehaviour
     [Range(1e-5f, 1)]
     private float lineWidth;
 
+    [SerializeField, Range(1e-5f, 5f)]
+    private float lineSimplifying;
+
     [SerializeField]
     [Range(0f, 15f)]
     private float drawingTimeLimit;
@@ -54,6 +59,7 @@ public class DrawController : MonoBehaviour
     private float currentLineZIndex = 0;
     private EdgeCollider2D currentLineCollider;
     private List<Vector2> currentLinePositions = new List<Vector2>();
+    private Camera mainCamera;
 
     public UnityEvent<List<Vector2>> OnLineFinished = new UnityEvent<List<Vector2>>();
     public DrawControllerState State { get; set; } = new DrawControllerState();
@@ -67,19 +73,24 @@ public class DrawController : MonoBehaviour
         State.isDrawTimeLimitEnabled = isDrawTimeLimit;
         State.isMoveSignalEnabled = isMoveSignalEnabled;
         State.isDrawingEnabled = true;
+        mainCamera = Camera.main;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        var pointerEventData = new PointerEventData(FindObjectOfType<EventSystem>());
-        pointerEventData.position = Input.mousePosition;
         var graphicsRaycastResults = new List<RaycastResult>();
-        UIRaycaster.Raycast(pointerEventData, graphicsRaycastResults);
+        Vector2 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        if (UIRaycaster != null)
+        {
+            var pointerEventData = new PointerEventData(FindObjectOfType<EventSystem>());
+            pointerEventData.position = Input.mousePosition;
+            UIRaycaster.Raycast(pointerEventData, graphicsRaycastResults);
+        }
+
         if (Physics2D.Raycast(mouseWorldPosition, Vector2.zero) || graphicsRaycastResults.Count != 0)
         {
-            Debug.Log("here");
+            //Debug.Log("here");
         }
         if (!State.isDrawingEnabled) { return; }
         if (Input.GetMouseButtonDown(0))        
@@ -89,13 +100,7 @@ public class DrawController : MonoBehaviour
             Draw();
 
         if (Input.GetMouseButtonUp(0))
-        {
-            State.currentDrawingTime = 0;
-            if (currentLine == null) return;
-            OnLineFinished.Invoke(currentLinePositions);
-            if(isLineDissapear)
-                Destroy(currentLine.gameObject);
-        }
+            EndDrawing();
     }
 
     public void clearAllLines()
@@ -114,10 +119,12 @@ public class DrawController : MonoBehaviour
         }
     }
 
+    public void DeleteCurrentLine() { Destroy(currentLine.gameObject); }
+
     private void Draw() 
     {
         currentLine.positionCount++;
-        var cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        var cursorPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         currentLine.SetPosition(currentLine.positionCount - 1, new Vector3(cursorPosition.x, cursorPosition.y, currentLineZIndex));
         currentLinePositions.Add(new Vector2(cursorPosition.x, cursorPosition.y));
 
@@ -148,5 +155,17 @@ public class DrawController : MonoBehaviour
             currentLineCollider.enabled = true;
         }
         currentLinePositions.Clear();
+    }
+
+    private void EndDrawing()
+    {
+        State.currentDrawingTime = 0;
+        if (currentLine == null) return;
+        currentLine.Simplify(lineSimplifying);
+        var newLinePositions = new Vector3[currentLine.positionCount];
+        currentLine.GetPositions(newLinePositions);
+        OnLineFinished.Invoke(newLinePositions.Select(x => new Vector2(x.x, x.y)).ToList());
+        if (isLineDissapear)
+            Destroy(currentLine.gameObject);
     }
 }
