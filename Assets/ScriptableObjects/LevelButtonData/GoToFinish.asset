@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58b2af6dd4608f141b842b0c176c71b1, type: 3}
+  m_Name: GoToFinish
+  m_EditorClassIdentifier: 
+  commonScrollViewButtonSprite: {fileID: 21300000, guid: 24693f7a400c2eb40ad00e7e262b7145, type: 3}
+  chosenScrollViewButtonSprite: {fileID: 21300000, guid: edbf5bae71d471e44a8c8ed64f90b54f, type: 3}
+  commonScrollViewButtonTextColor: {r: 1, g: 1, b: 1, a: 1}
+  chosenScrollViewButtonTextColor: {r: 1, g: 1, b: 1, a: 1}
+  mainButtonSprite: {fileID: 21300000, guid: edbf5bae71d471e44a8c8ed64f90b54f, type: 3}

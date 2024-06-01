@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "new level card", menuName = "Scriptable objects/UI/Level card")]
@@ -11,4 +12,6 @@ public class LevelCard : ScriptableObject
     public string description;
     public Sprite levelPreview;
     public int levelSceneIndex;
+    public LevelFontData levelFontData;
+    public LevelButtonData levelButtonData;
 }

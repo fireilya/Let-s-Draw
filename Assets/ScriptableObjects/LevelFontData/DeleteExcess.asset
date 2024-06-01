@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69c36a2be7e480a41a1434bfffbb4827, type: 3}
+  m_Name: DeleteExcess
+  m_EditorClassIdentifier: 
+  mainHeaderFont: {fileID: 11400000, guid: 7e6126f7bef822c48a41c4ac53c0a651, type: 2}
+  mainHeaderFontSize: 40
+  mainHeaderFontLineSpacing: -29.4
+  mainDescriptionFont: {fileID: 11400000, guid: 43ba6b750445ea1408ac76b0ae737922, type: 2}
+  mainDescriptionFontSize: 20
+  mainDescriptionFontLineSpacing: -22.28
+  mainButtonsFont: {fileID: 11400000, guid: 7e6126f7bef822c48a41c4ac53c0a651, type: 2}
+  mainButtonsFontSize: 25
+  scrollMenuHeadersFont: {fileID: 11400000, guid: 7e6126f7bef822c48a41c4ac53c0a651, type: 2}
+  scrollMenuHeadersFontSize: 19
+  scrollMenuDescriptionFont: {fileID: 11400000, guid: 43ba6b750445ea1408ac76b0ae737922, type: 2}
+  scrollMenuDescriptionFontSize: 15
+  scrollMenuButtonsFont: {fileID: 11400000, guid: 7e6126f7bef822c48a41c4ac53c0a651, type: 2}
+  scrollMenuButtonsFontSize: 15

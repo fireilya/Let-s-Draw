@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69c36a2be7e480a41a1434bfffbb4827, type: 3}
+  m_Name: GoToFinish
+  m_EditorClassIdentifier: 
+  mainHeaderFont: {fileID: 11400000, guid: 814e7b946f243574eb606bd2b5c82541, type: 2}
+  mainHeaderFontSize: 35
+  mainHeaderFontLineSpacing: 0
+  mainDescriptionFont: {fileID: 11400000, guid: 814e7b946f243574eb606bd2b5c82541, type: 2}
+  mainDescriptionFontSize: 15
+  mainDescriptionFontLineSpacing: 25
+  mainButtonsFont: {fileID: 11400000, guid: 4e108ca5f68bc304c95b0dd16c8b6b32, type: 2}
+  mainButtonsFontSize: 20
+  scrollMenuHeadersFont: {fileID: 11400000, guid: 814e7b946f243574eb606bd2b5c82541, type: 2}
+  scrollMenuHeadersFontSize: 14
+  scrollMenuDescriptionFont: {fileID: 11400000, guid: e6f54c3fd861be442a5726123db572cc, type: 2}
+  scrollMenuDescriptionFontSize: 13
+  scrollMenuButtonsFont: {fileID: 11400000, guid: b55473550bcece44b876e1d3883930b7, type: 2}
+  scrollMenuButtonsFontSize: 12
