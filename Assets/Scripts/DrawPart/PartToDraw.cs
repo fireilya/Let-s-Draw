@@ -9,7 +9,7 @@ public class PartToDraw : MonoBehaviour
     private DrawController drawController;
 
     [SerializeField]
-    private float accuracyCoeff;
+    private float maxDeviation;
 
     private PolygonCollider2D poligonCollider;
     private SpriteRenderer spriteRenderer;
@@ -21,16 +21,16 @@ public class PartToDraw : MonoBehaviour
         drawController.OnLineFinished.AddListener(VerifyStroke);
     }
 
-    void VerifyStroke(List<Vector2> linePointPositions)
+    private void VerifyStroke(List<Vector2> linePointPositions)
     {
-        var deviation = poligonCollider.points
-            .Select(coliderOutlinePoint => 
-            linePointPositions
-                .Select(linePoint => Vector2.Distance(transform.TransformPoint(coliderOutlinePoint), linePoint))
+        var deviation = linePointPositions
+            .Select(linePoint =>
+            poligonCollider.points
+                .Select(coliderPoint => Vector2.Distance(transform.TransformPoint(coliderPoint), linePoint))
                 .Min())
             .Average();
 
-        if (deviation<accuracyCoeff)       
+        if (deviation<maxDeviation)       
             spriteRenderer.enabled = true;
     }
 }

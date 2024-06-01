@@ -121,6 +121,8 @@ public class DrawController : MonoBehaviour
 
     public void DeleteCurrentLine() { Destroy(currentLine.gameObject); }
 
+    public List<Vector2> GetCurrentLine() { return currentLinePositions; }
+
     private void Draw() 
     {
         currentLine.positionCount++;

@@ -1141,12 +1141,14 @@ MonoBehaviour:
   linePrefab: {fileID: 2681697565064849506, guid: f6af0c81b67427344af878d67b711686, type: 3}
   lineColor: {r: 1, g: 0, b: 0, a: 1}
   lineWidth: 0.082
+  lineSimplifying: 0
   drawingTimeLimit: 5
   isLineDissapear: 1
   isLineWithColider: 0
   isDrawTimeLimit: 0
   isMoveSignalEnabled: 0
   lineTexture: {fileID: 0}
+  UIRaycaster: {fileID: 0}
   OnLineFinished:
     m_PersistentCalls:
       m_Calls: []
@@ -1531,7 +1533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drawController: {fileID: 579661961}
-  accuracyCoeff: 0.15
+  maxDeviation: 0.12
 --- !u!60 &697259271
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -2689,7 +2691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drawController: {fileID: 579661961}
-  accuracyCoeff: 0.15
+  maxDeviation: 0.12
 --- !u!60 &1340726303
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -4441,7 +4443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drawController: {fileID: 579661961}
-  accuracyCoeff: 0.15
+  maxDeviation: 0.12
 --- !u!60 &1947270427
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -5186,7 +5188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drawController: {fileID: 579661961}
-  accuracyCoeff: 0.15
+  maxDeviation: 0.12
 --- !u!60 &2088127834
 PolygonCollider2D:
   m_ObjectHideFlags: 0
