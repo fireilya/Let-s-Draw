@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/DeleteExcess.unity
     guid: bee540a6e0d5f134ca4f978481d21224
+  - enabled: 1
+    path: Assets/Scenes/Levels/RunAway.unity
+    guid: ae5541cd15ab0d64bb93934adcb1b357
+  - enabled: 1
+    path: Assets/Scenes/Levels/DrawLearning.unity
+    guid: 2410bf57439db7d4c9474d6ea85a87e2
   m_configObjects: {}

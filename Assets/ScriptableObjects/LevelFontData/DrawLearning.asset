@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69c36a2be7e480a41a1434bfffbb4827, type: 3}
+  m_Name: DrawLearning
+  m_EditorClassIdentifier: 
+  mainHeaderFont: {fileID: 11400000, guid: 0d8b0c6a5e581ec4b85e9bfb64da0c56, type: 2}
+  mainHeaderFontSize: 36
+  mainHeaderFontLineSpacing: -29.4
+  mainDescriptionFont: {fileID: 11400000, guid: b2816b4b5613a884e99230fcaf0bea33, type: 2}
+  mainDescriptionFontSize: 15
+  mainDescriptionFontLineSpacing: -22.28
+  mainButtonsFont: {fileID: 11400000, guid: 0d8b0c6a5e581ec4b85e9bfb64da0c56, type: 2}
+  mainButtonsFontSize: 20
+  scrollMenuHeadersFont: {fileID: 11400000, guid: 0d8b0c6a5e581ec4b85e9bfb64da0c56, type: 2}
+  scrollMenuHeadersFontSize: 14
+  scrollMenuDescriptionFont: {fileID: 11400000, guid: 9577ef86b392912478a84fc3ff0c83d5, type: 2}
+  scrollMenuDescriptionFontSize: 13
+  scrollMenuButtonsFont: {fileID: 11400000, guid: 853666923f669e944888a9ff36fd90c4, type: 2}
+  scrollMenuButtonsFontSize: 13

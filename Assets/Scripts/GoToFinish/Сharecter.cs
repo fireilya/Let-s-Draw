@@ -23,13 +23,6 @@ public class MainCharecter : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Static;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Finish")
-            levelUI.ShowLevelResult();
-    }
-
-    // Update is called once per frame
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.V) && drawController.State.isMoveSignalEnabled)
