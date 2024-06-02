@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/GoToFinish.unity
     guid: 8685c9069e9a24c46bdfcada7e7e2610
   - enabled: 1
-    path: Assets/Scenes/Levels/RemoveExtraPart.unity
+    path: Assets/Scenes/Levels/DeleteExcess.unity
     guid: bee540a6e0d5f134ca4f978481d21224
   m_configObjects: {}

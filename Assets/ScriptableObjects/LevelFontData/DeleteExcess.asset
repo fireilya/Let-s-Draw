@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69c36a2be7e480a41a1434bfffbb4827, type: 3}
   m_Name: DeleteExcess
   m_EditorClassIdentifier: 
-  mainHeaderFont: {fileID: 11400000, guid: 7e6126f7bef822c48a41c4ac53c0a651, type: 2}
-  mainHeaderFontSize: 40
-  mainHeaderFontLineSpacing: -29.4
-  mainDescriptionFont: {fileID: 11400000, guid: 43ba6b750445ea1408ac76b0ae737922, type: 2}
-  mainDescriptionFontSize: 20
-  mainDescriptionFontLineSpacing: -22.28
-  mainButtonsFont: {fileID: 11400000, guid: 7e6126f7bef822c48a41c4ac53c0a651, type: 2}
-  mainButtonsFontSize: 25
-  scrollMenuHeadersFont: {fileID: 11400000, guid: 7e6126f7bef822c48a41c4ac53c0a651, type: 2}
-  scrollMenuHeadersFontSize: 19
-  scrollMenuDescriptionFont: {fileID: 11400000, guid: 43ba6b750445ea1408ac76b0ae737922, type: 2}
-  scrollMenuDescriptionFontSize: 15
-  scrollMenuButtonsFont: {fileID: 11400000, guid: 7e6126f7bef822c48a41c4ac53c0a651, type: 2}
-  scrollMenuButtonsFontSize: 15
+  mainHeaderFont: {fileID: 11400000, guid: c7a44dd87415342429103b72a38b4924, type: 2}
+  mainHeaderFontSize: 30
+  mainHeaderFontLineSpacing: 0
+  mainDescriptionFont: {fileID: 11400000, guid: 2992d75f98c196b409040799f12ff2d8, type: 2}
+  mainDescriptionFontSize: 16
+  mainDescriptionFontLineSpacing: -5
+  mainButtonsFont: {fileID: 11400000, guid: c7a44dd87415342429103b72a38b4924, type: 2}
+  mainButtonsFontSize: 20
+  scrollMenuHeadersFont: {fileID: 11400000, guid: c7a44dd87415342429103b72a38b4924, type: 2}
+  scrollMenuHeadersFontSize: 13
+  scrollMenuDescriptionFont: {fileID: 11400000, guid: 93d325fcdc88b4d48b598684eb0a57c2, type: 2}
+  scrollMenuDescriptionFontSize: 10
+  scrollMenuButtonsFont: {fileID: 11400000, guid: c7a44dd87415342429103b72a38b4924, type: 2}
+  scrollMenuButtonsFontSize: 12
