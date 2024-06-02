@@ -9,10 +9,10 @@ public class LevelUI : MonoBehaviour
     private DrawController drawController;
 
     [SerializeField]
-    private Button timeButton;
+    private Button collisionButton;
 
     [SerializeField]
-    private Button collisionButton;
+    private Button timeButton;
 
     [SerializeField]
     private Button eraseButton;
@@ -40,13 +40,12 @@ public class LevelUI : MonoBehaviour
 
     void Start()
     {
-        TimeSection.SetActive(drawController.State.isDrawTimeLimitEnabled);
-        moveSignalButton.interactable = drawController.State.isMoveSignalEnabled;
         timeIndicator.fillAmount = 1;
-        collisionButton.image.color = drawController.State.isCollisionEnabled ? enabledColor : comonColor;
-        timeButton.image.color = drawController.State.isDrawTimeLimitEnabled ? enabledColor : comonColor;
-        eraseButton.image.color = drawController.State.isEraseEnabled ? enabledColor : comonColor;
-        moveSignalButton.image.color = drawController.State.isMoveSignalEnabled ? enabledColor : comonColor;
+        TimeSection.SetActive(drawController.State.isDrawTimeLimitEnabled);
+        collisionButton.image.color = drawController.State.isCollisionEnabled || !collisionButton.interactable ? enabledColor : comonColor;
+        timeButton.image.color = drawController.State.isDrawTimeLimitEnabled || !timeButton.interactable ? enabledColor : comonColor;
+        eraseButton.image.color = drawController.State.isEraseEnabled || !eraseButton.interactable ? enabledColor : comonColor;
+        moveSignalButton.image.color = drawController.State.isMoveSignalEnabled || !moveSignalButton.interactable ? enabledColor : comonColor;
     }
 
     // Update is called once per frame
@@ -60,11 +59,7 @@ public class LevelUI : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Time.timeScale = 0;
-            drawController.State.isDrawingEnabled = false;
-            pauseMenu.gameObject.SetActive(true);
-        }
+            Pause();
     }
 
     public void ShowLevelResult()
@@ -98,5 +93,12 @@ public class LevelUI : MonoBehaviour
     {
         drawController.State.isMoveSignalEnabled = !drawController.State.isMoveSignalEnabled;
         moveSignalButton.image.color = drawController.State.isMoveSignalEnabled ? enabledColor : comonColor;
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
+        drawController.State.isDrawingEnabled = false;
+        pauseMenu.gameObject.SetActive(true);
     }
 }

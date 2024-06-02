@@ -60,6 +60,7 @@ public class DrawController : MonoBehaviour
     private EdgeCollider2D currentLineCollider;
     private List<Vector2> currentLinePositions = new List<Vector2>();
     private Camera mainCamera;
+    private bool isDrawingStarted = false;
 
     public UnityEvent<List<Vector2>> OnLineFinished = new UnityEvent<List<Vector2>>();
     public DrawControllerState State { get; set; } = new DrawControllerState();
@@ -79,24 +80,14 @@ public class DrawController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var graphicsRaycastResults = new List<RaycastResult>();
-        Vector2 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        if (UIRaycaster != null)
-        {
-            var pointerEventData = new PointerEventData(FindObjectOfType<EventSystem>());
-            pointerEventData.position = Input.mousePosition;
-            UIRaycaster.Raycast(pointerEventData, graphicsRaycastResults);
-        }
-
-        if (Physics2D.Raycast(mouseWorldPosition, Vector2.zero) || graphicsRaycastResults.Count != 0)
-        {
-            //Debug.Log("here");
-        }
         if (!State.isDrawingEnabled) { return; }
-        if (Input.GetMouseButtonDown(0))        
-            InitLine();       
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (CheckDrawingObstacles()) return;
+            InitLine();
+        }     
 
-        if(Input.GetMouseButton(0) && State.currentDrawingTime<=drawingTimeLimit)        
+        if(Input.GetMouseButton(0) && State.currentDrawingTime<=drawingTimeLimit && isDrawingStarted)        
             Draw();
 
         if (Input.GetMouseButtonUp(0))
@@ -140,6 +131,7 @@ public class DrawController : MonoBehaviour
 
     private void InitLine()
     {
+        isDrawingStarted = true;
         currentLine = Instantiate(linePrefab, Vector3.zero, Quaternion.identity);
         currentLine.widthCurve = new AnimationCurve(new Keyframe(0, lineWidth), new Keyframe(1, lineWidth));
         Material lineMaterial = currentLine.material;
@@ -161,6 +153,7 @@ public class DrawController : MonoBehaviour
 
     private void EndDrawing()
     {
+        isDrawingStarted = false;
         State.currentDrawingTime = 0;
         if (currentLine == null) return;
         currentLine.Simplify(lineSimplifying);
@@ -169,5 +162,18 @@ public class DrawController : MonoBehaviour
         OnLineFinished.Invoke(newLinePositions.Select(x => new Vector2(x.x, x.y)).ToList());
         if (isLineDissapear)
             Destroy(currentLine.gameObject);
+    }
+
+    private bool CheckDrawingObstacles()
+    {
+        var graphicsRaycastResults = new List<RaycastResult>();
+        Vector2 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        if (UIRaycaster != null)
+        {
+            var pointerEventData = new PointerEventData(FindObjectOfType<EventSystem>());
+            pointerEventData.position = Input.mousePosition;
+            UIRaycaster.Raycast(pointerEventData, graphicsRaycastResults);
+        }
+        return Physics2D.Raycast(mouseWorldPosition, Vector2.zero) || graphicsRaycastResults.Count != 0;
     }
 }

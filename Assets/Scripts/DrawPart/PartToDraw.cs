@@ -23,14 +23,21 @@ public class PartToDraw : MonoBehaviour
 
     private void VerifyStroke(List<Vector2> linePointPositions)
     {
-        var deviation = linePointPositions
+        var deviationByLine = linePointPositions
             .Select(linePoint =>
             poligonCollider.points
-                .Select(coliderPoint => Vector2.Distance(transform.TransformPoint(coliderPoint), linePoint))
+                .Select(colliderPoint => Vector2.Distance(transform.TransformPoint(colliderPoint), linePoint))
                 .Min())
             .Average();
 
-        if (deviation<maxDeviation)       
+        var deviationByCollider = poligonCollider.points
+            .Select(colliderPoint =>
+             linePointPositions
+                .Select(linePoint => Vector2.Distance(transform.TransformPoint(colliderPoint), linePoint))
+                .Min())
+            .Average();
+
+        if ((deviationByLine + deviationByCollider) / 2f < maxDeviation)       
             spriteRenderer.enabled = true;
     }
 }
