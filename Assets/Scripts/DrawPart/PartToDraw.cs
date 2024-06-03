@@ -9,15 +9,21 @@ public class PartToDraw : MonoBehaviour
     private DrawController drawController;
 
     [SerializeField]
+    private LevelUI levelUI;
+
+    [SerializeField]
     private float maxDeviation;
 
+    [SerializeField]
+    private GameObject drawnPart;
+
     private PolygonCollider2D poligonCollider;
-    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer drawnPartSpriteRenderer;
 
     void Start()
     {
         poligonCollider = GetComponent<PolygonCollider2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        drawnPartSpriteRenderer = drawnPart.GetComponent<SpriteRenderer>();
         drawController.OnLineFinished.AddListener(VerifyStroke);
     }
 
@@ -37,7 +43,11 @@ public class PartToDraw : MonoBehaviour
                 .Min())
             .Average();
 
-        if ((deviationByLine + deviationByCollider) / 2f < maxDeviation)       
-            spriteRenderer.enabled = true;
+        if ((deviationByLine + deviationByCollider) / 2f < maxDeviation) 
+        { 
+            drawnPartSpriteRenderer.enabled = true;
+            levelUI.DelayShowResult(0.75f); 
+        }
+        
     }
 }

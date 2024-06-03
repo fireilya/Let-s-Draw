@@ -92,6 +92,9 @@ public class DrawController : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
             EndDrawing();
+
+        if (Input.GetKeyDown(KeyCode.C) && State.isEraseEnabled)
+            clearAllLines();
     }
 
     public void clearAllLines()
@@ -174,6 +177,8 @@ public class DrawController : MonoBehaviour
             pointerEventData.position = Input.mousePosition;
             UIRaycaster.Raycast(pointerEventData, graphicsRaycastResults);
         }
-        return Physics2D.Raycast(mouseWorldPosition, Vector2.zero) || graphicsRaycastResults.Count != 0;
+
+        RaycastHit2D hit = Physics2D.Raycast(mouseWorldPosition, Vector2.zero);
+        return (hit.collider != null && hit.collider.gameObject.tag == "DrawObstacle") || graphicsRaycastResults.Count != 0;
     }
 }

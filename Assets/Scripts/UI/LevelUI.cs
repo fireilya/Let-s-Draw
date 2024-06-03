@@ -101,4 +101,12 @@ public class LevelUI : MonoBehaviour
         drawController.State.isDrawingEnabled = false;
         pauseMenu.gameObject.SetActive(true);
     }
+
+    public void DelayShowResult(float delay) { StartCoroutine(DelayShowResultCoroutine(delay)); }
+
+    private IEnumerator DelayShowResultCoroutine(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        ShowLevelResult();
+    }
 }

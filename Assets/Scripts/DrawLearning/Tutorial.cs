@@ -13,6 +13,9 @@ public class Tutorial : MonoBehaviour
     private DrawController drawController;
 
     [SerializeField]
+    private LevelUI levelUI;
+
+    [SerializeField]
     private GameObject marker;
 
     [SerializeField, Range(0, 2)]
@@ -56,6 +59,7 @@ public class Tutorial : MonoBehaviour
         if (isLineFinished)
         {
             isLineFinished = cycleMarkerFlag = false;
+            if (currentDrawObjectIndex == partsToDraw.Length - 1) { levelUI.DelayShowResult(0.75f); return; }
             EnableNextObject();
         }
     }

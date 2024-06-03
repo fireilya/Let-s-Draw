@@ -40,6 +40,9 @@ public class ExtraPart : MonoBehaviour
     [SerializeField]
     private DrawController drawController;
 
+    [SerializeField]
+    private LevelUI levelUI;
+
     [SerializeField, Range(0.0f, 1.0f)]
     private float linePointsInsideColiderRatioTreshold;
 
@@ -78,6 +81,6 @@ public class ExtraPart : MonoBehaviour
 
         if (intersectionBoundingBox.Area/colliderBoundingBox.Area > lineCoverColiderRatioTreshold &&
             linePointsInsideColliderCount/(float)linePoints.Count > linePointsInsideColiderRatioTreshold)
-        { Destroy(gameObject); }
+        { levelUI.DelayShowResult(0.75f); Destroy(gameObject); }
     }
 }

@@ -10,6 +10,9 @@ public class Runner : MonoBehaviour
     [SerializeField]
     private DrawController drawController;
 
+    [SerializeField]
+    private LevelUI levelUI;
+
     [SerializeField, Range(0.2f, 0.6f)]
     private float accuracityCoeff = 0f;
 
@@ -28,7 +31,7 @@ public class Runner : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Finish") { Debug.Log("cool!"); return; }
+        if (collision.gameObject.tag == "Finish") { levelUI.ShowLevelResult(); return; }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     void Start()
