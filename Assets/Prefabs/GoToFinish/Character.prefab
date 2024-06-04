@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f8a24f155dbbc7468357bec716b77fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushForce: 250
+  pushForce: 300
   maxVelocity: 10
   drawController: {fileID: 0}
 --- !u!111 &3916028310206102833

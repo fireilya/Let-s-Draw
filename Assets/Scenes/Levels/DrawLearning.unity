@@ -263,8 +263,9 @@ MonoBehaviour:
   drawController: {fileID: 579661961}
   levelUI: {fileID: 165039295}
   marker: {fileID: 2716462872297188773, guid: 53cb7dcf0615fe44f9d4a809b0fcb99c, type: 3}
+  firstMarkerOpacity: 0.806
   maxDeviation: 0.21
-  markerSteps: 3
+  maxShownMarkersCount: 7
 --- !u!4 &71162339
 Transform:
   m_ObjectHideFlags: 0
@@ -1831,7 +1832,7 @@ MonoBehaviour:
   isDrawTimeLimit: 0
   isMoveSignalEnabled: 0
   lineTexture: {fileID: 0}
-  UIRaycaster: {fileID: 0}
+  UIRaycaster: {fileID: 1171541}
   OnLineFinished:
     m_PersistentCalls:
       m_Calls: []

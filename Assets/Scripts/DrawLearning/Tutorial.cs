@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Tutorial : MonoBehaviour
@@ -18,31 +19,32 @@ public class Tutorial : MonoBehaviour
     [SerializeField]
     private GameObject marker;
 
+    [SerializeField, Range(0, 1f)]
+    private float firstMarkerOpacity;
+
     [SerializeField, Range(0, 2)]
     private float maxDeviation;
 
-    [SerializeField, Range(0, 20)]
-    private int markerSteps;
+    [SerializeField]
+    private int maxShownMarkersCount;
 
+    private SpriteRenderer[] shownMarkersSpriteRenderers;
     private PolygonCollider2D[] colliders;
     private SpriteRenderer[] spriteRenderers;
     private int currentDrawObjectIndex = 0;
-    private int currentPointIndex = 0;
-    private GameObject currentMarker;
-    private bool cycleMarkerFlag = false;
+    private int nextPointIndex = 0;
     private bool isLineFinished = false;
+    private float markerOpacityStep;
 
     void Start()
     {
+        shownMarkersSpriteRenderers = new SpriteRenderer[maxShownMarkersCount];
         drawController.OnLineFinished.AddListener(FinishLine);
         colliders = partsToDraw.Select(x => { x.gameObject.SetActive(false); return x.GetComponent<PolygonCollider2D>(); }).ToArray();
         spriteRenderers = partsToDraw.Select(x => x.GetComponent<SpriteRenderer>()).ToArray();
         partsToDraw[currentDrawObjectIndex].gameObject.SetActive(true);
-        currentMarker = 
-            Instantiate(
-                marker.gameObject,
-                partsToDraw[currentDrawObjectIndex].transform.TransformPoint(colliders[currentDrawObjectIndex].points[currentPointIndex]), 
-                Quaternion.identity);
+        markerOpacityStep = firstMarkerOpacity / maxShownMarkersCount;
+        InitMarkersArray();  
     }
 
     // Update is called once per frame
@@ -50,57 +52,63 @@ public class Tutorial : MonoBehaviour
     {
         var currentLine = drawController.GetCurrentLine();
         if (currentLine == null || currentLine.Count == 0) return;
-        if (currentMarker != null && Vector2.Distance(currentLine[^1], currentMarker.transform.position) < maxDeviation)
+        if (shownMarkersSpriteRenderers[nextPointIndex % maxShownMarkersCount] != null && 
+            Vector2.Distance(
+                currentLine[^1],
+                shownMarkersSpriteRenderers[nextPointIndex % maxShownMarkersCount]
+                    .gameObject
+                    .transform
+                    .position) < maxDeviation)
         {
-            Destroy(currentMarker.gameObject);
-            if (!cycleMarkerFlag) MakeNewMarker();
+            Destroy(shownMarkersSpriteRenderers[nextPointIndex % maxShownMarkersCount].gameObject);
+            UpdateMarkersPath();
         }
 
         if (isLineFinished)
         {
-            isLineFinished = cycleMarkerFlag = false;
+            isLineFinished = false;
             if (currentDrawObjectIndex == partsToDraw.Length - 1) { levelUI.DelayShowResult(0.75f); return; }
             EnableNextObject();
         }
     }
 
-    private void MakeNewMarker()
+    private void UpdateMarkersPath()
     {
         var currentDrawObjectColliderPoints = colliders[currentDrawObjectIndex].points;
-        cycleMarkerFlag = currentPointIndex + markerSteps > currentDrawObjectColliderPoints.Length - 1;
-        currentPointIndex = cycleMarkerFlag ? 0 : currentPointIndex + markerSteps;
-        currentMarker =
-            Instantiate(
-                marker.gameObject,
-                partsToDraw[currentDrawObjectIndex].transform.TransformPoint(currentDrawObjectColliderPoints[currentPointIndex]),
-                Quaternion.identity);
+        if (nextPointIndex < currentDrawObjectColliderPoints.Length)
+        {
+            shownMarkersSpriteRenderers[nextPointIndex % maxShownMarkersCount] =
+                Instantiate(
+                    marker.gameObject,
+                    partsToDraw[currentDrawObjectIndex].transform.TransformPoint(currentDrawObjectColliderPoints[nextPointIndex]),
+                    Quaternion.identity).GetComponent<SpriteRenderer>();
+
+            var spriteColor = shownMarkersSpriteRenderers[nextPointIndex % maxShownMarkersCount].color;
+            spriteColor.a = 0;
+            shownMarkersSpriteRenderers[nextPointIndex % maxShownMarkersCount].color = spriteColor;
+        }
+        UpdateMarkersColor();
+        ++nextPointIndex;
     }
 
     private void EnableNextObject()
     {
         ++currentDrawObjectIndex;
-        currentPointIndex = 0;
+        nextPointIndex = 0;
         partsToDraw[currentDrawObjectIndex].gameObject.SetActive(true);
-        currentMarker =
-            Instantiate(
-                marker.gameObject,
-                partsToDraw[currentDrawObjectIndex].transform.TransformPoint(colliders[currentDrawObjectIndex].points[currentPointIndex]),
-                Quaternion.identity);
+        ClearMarkersArray();
+        InitMarkersArray();
     }
 
     private void FinishLine(List<Vector2> linePoints) 
     {
-        isLineFinished = currentMarker == null ? VerifyStroke(linePoints) : false;
-        if (currentMarker != null) Destroy(currentMarker.gameObject);
+        isLineFinished = shownMarkersSpriteRenderers[nextPointIndex % maxShownMarkersCount] == null &&
+            VerifyStroke(linePoints);
         if (!isLineFinished)
         {
-            currentPointIndex = 0;
-            currentMarker =
-                Instantiate(
-                marker.gameObject,
-                partsToDraw[currentDrawObjectIndex].transform.TransformPoint(colliders[currentDrawObjectIndex].points[currentPointIndex]),
-                Quaternion.identity);
-            cycleMarkerFlag = false;
+            nextPointIndex = 0;
+            ClearMarkersArray();
+            InitMarkersArray();
         }
         else spriteRenderers[currentDrawObjectIndex].enabled = true;
     }
@@ -116,4 +124,42 @@ public class Tutorial : MonoBehaviour
 
         return deviation < maxDeviation;
     }
+
+    private void InitMarkersArray()
+    {
+        for (int i = 0; i < maxShownMarkersCount && i < colliders[currentDrawObjectIndex].points.Length; i++)
+        {
+            shownMarkersSpriteRenderers[i] = Instantiate(
+                marker.gameObject,
+                partsToDraw[currentDrawObjectIndex].transform.TransformPoint(colliders[currentDrawObjectIndex].points[nextPointIndex++]),
+                Quaternion.identity).GetComponent<SpriteRenderer>();
+
+            var spriteColor = shownMarkersSpriteRenderers[i].color;
+            spriteColor.a = firstMarkerOpacity - markerOpacityStep * i;
+            shownMarkersSpriteRenderers[i].color = spriteColor;
+        }
+    }
+
+    private void ClearMarkersArray()
+    {
+        foreach (var spriteRenderer in shownMarkersSpriteRenderers)
+        {
+            if (spriteRenderer != null) Destroy(spriteRenderer.gameObject);
+        }
+    }
+
+    private void UpdateMarkersColor()
+    {
+        for (int i = 0; i < maxShownMarkersCount; i++)
+        {
+            if (shownMarkersSpriteRenderers[i] != null)
+            {
+                var spriteColor = shownMarkersSpriteRenderers[i].color;
+                spriteColor.a = spriteColor.a + markerOpacityStep;
+                shownMarkersSpriteRenderers[i].color = spriteColor;
+            }
+        }
+    }
+
+
 }
