@@ -32,7 +32,7 @@ public class Runner : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Finish") { levelUI.ShowLevelResult(); return; }
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        drawController.Restart();
     }
     void Start()
     {

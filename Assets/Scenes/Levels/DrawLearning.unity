@@ -1834,6 +1834,7 @@ MonoBehaviour:
   isMoveSignalEnabled: 0
   lineTexture: {fileID: 0}
   UIRaycaster: {fileID: 1171541}
+  audioSource: {fileID: 1623420303}
   OnLineFinished:
     m_PersistentCalls:
       m_Calls: []
@@ -2993,6 +2994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 120305e70d735014ea44f6640698dadf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drawController: {fileID: 579661961}
 --- !u!4 &1094561698
 Transform:
   m_ObjectHideFlags: 0
@@ -4071,7 +4073,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.6
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

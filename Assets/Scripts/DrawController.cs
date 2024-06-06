@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DrawController : MonoBehaviour
@@ -55,6 +56,9 @@ public class DrawController : MonoBehaviour
     [SerializeField]
     private GraphicRaycaster UIRaycaster;
 
+    [SerializeField]
+    private AudioSource audioSource;
+
     private LineRenderer currentLine;
     private float currentLineZIndex = 0;
     private EdgeCollider2D currentLineCollider;
@@ -62,11 +66,14 @@ public class DrawController : MonoBehaviour
     private Camera mainCamera;
     private bool isDrawingStarted = false;
 
+    private static float currentAudioSourcePlayTime = 0;
+
     public UnityEvent<List<Vector2>> OnLineFinished = new UnityEvent<List<Vector2>>();
     public DrawControllerState State { get; set; } = new DrawControllerState();
 
     void Awake()
     {
+        audioSource.time = currentAudioSourcePlayTime;
         State.isCollisionEnabled = isLineWithColider;
         State.isEraseEnabled = !isLineDissapear;
         State.drawingTimeLimit = drawingTimeLimit;
@@ -116,6 +123,14 @@ public class DrawController : MonoBehaviour
     public void DeleteCurrentLine() { Destroy(currentLine.gameObject); }
 
     public List<Vector2> GetCurrentLine() { return currentLinePositions; }
+
+    public void Restart()
+    {
+        State.isDrawingEnabled = true;
+        currentAudioSourcePlayTime = audioSource.time;
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
     private void Draw() 
     {
