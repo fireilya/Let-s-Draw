@@ -452,15 +452,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0414\u043E\u0440\u0438\u0441\u0443\u0439 \u0447\u0430\u0441\u0442\u044C"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b9cb030c1305c66418328e13f1ed3849, type: 2}
-  m_sharedMaterial: {fileID: -4919914122444626483, guid: b9cb030c1305c66418328e13f1ed3849, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b2816b4b5613a884e99230fcaf0bea33, type: 2}
+  m_sharedMaterial: {fileID: -4919914122444626483, guid: b2816b4b5613a884e99230fcaf0bea33, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281949652
-  m_fontColor: {r: 0.83137256, g: 0.3647059, b: 0.22352941, a: 1}
+    rgba: 4289701941
+  m_fontColor: {r: 0.20784314, g: 0.65882355, b: 0.6862745, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -516,7 +516,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: -2.0065157, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &93793612
@@ -2899,8 +2899,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284061946
-  m_fontColor: {r: 0.98039216, g: 0.59607846, b: 0.34901962, a: 1}
+    rgba: 4290949701
+  m_fontColor: {r: 0.27058825, g: 0.69803923, b: 0.7607843, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3835,15 +3835,15 @@ MonoBehaviour:
   m_text: "\u041D\u0430\u0436\u043C\u0438\u0442\u0435 ESC, \u0447\u0442\u043E\u0431\u044B
     \u0432\u0435\u0440\u043D\u0443\u0442\u044C\u0441\u044F"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b9cb030c1305c66418328e13f1ed3849, type: 2}
-  m_sharedMaterial: {fileID: -4919914122444626483, guid: b9cb030c1305c66418328e13f1ed3849, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b2816b4b5613a884e99230fcaf0bea33, type: 2}
+  m_sharedMaterial: {fileID: -4919914122444626483, guid: b2816b4b5613a884e99230fcaf0bea33, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281949652
-  m_fontColor: {r: 0.83137256, g: 0.3647059, b: 0.22352941, a: 1}
+    rgba: 4289701941
+  m_fontColor: {r: 0.20784314, g: 0.65882355, b: 0.6862745, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3899,7 +3899,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: -2.0065157, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1443581115
@@ -4170,15 +4170,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0423\u0420\u041E\u0412\u0415\u041D\u042C \u041F\u0420\u041E\u0419\u0414\u0415\u041D"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b9cb030c1305c66418328e13f1ed3849, type: 2}
-  m_sharedMaterial: {fileID: -4919914122444626483, guid: b9cb030c1305c66418328e13f1ed3849, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b2816b4b5613a884e99230fcaf0bea33, type: 2}
+  m_sharedMaterial: {fileID: -4919914122444626483, guid: b2816b4b5613a884e99230fcaf0bea33, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281949652
-  m_fontColor: {r: 0.83137256, g: 0.3647059, b: 0.22352941, a: 1}
+    rgba: 4289701941
+  m_fontColor: {r: 0.20784314, g: 0.65882355, b: 0.6862745, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4234,7 +4234,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1631838604
@@ -4349,8 +4349,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281949652
-  m_fontColor: {r: 0.83137256, g: 0.3647059, b: 0.22352941, a: 1}
+    rgba: 4287462144
+  m_fontColor: {r: 0, g: 0.48235294, b: 0.5529412, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4476,15 +4476,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u041F\u0410\u0423\u0417\u0410"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b9cb030c1305c66418328e13f1ed3849, type: 2}
-  m_sharedMaterial: {fileID: -4919914122444626483, guid: b9cb030c1305c66418328e13f1ed3849, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b2816b4b5613a884e99230fcaf0bea33, type: 2}
+  m_sharedMaterial: {fileID: -4919914122444626483, guid: b2816b4b5613a884e99230fcaf0bea33, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281949652
-  m_fontColor: {r: 0.83137256, g: 0.3647059, b: 0.22352941, a: 1}
+    rgba: 4289701941
+  m_fontColor: {r: 0.20784314, g: 0.65882355, b: 0.6862745, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4540,7 +4540,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: -2.0065157, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1799273063
@@ -4736,7 +4736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.936, b: 0.8, a: 1}
+  m_Color: {r: 0.9892344, g: 0.99607843, b: 0.92535686, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5075,7 +5075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.9372549, b: 0.8, a: 1}
+  m_Color: {r: 0.9882353, g: 0.99607843, b: 0.9254902, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
