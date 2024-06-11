@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PartToDraw : MonoBehaviour
 {
@@ -9,21 +10,15 @@ public class PartToDraw : MonoBehaviour
     private DrawController drawController;
 
     [SerializeField]
-    private LevelUI levelUI;
-
-    [SerializeField]
     private float maxDeviation;
 
-    [SerializeField]
-    private GameObject drawnPart;
-
     private PolygonCollider2D poligonCollider;
-    private SpriteRenderer drawnPartSpriteRenderer;
+
+    public UnityEvent OnPartDrawed = new UnityEvent();
 
     void Start()
     {
         poligonCollider = GetComponent<PolygonCollider2D>();
-        drawnPartSpriteRenderer = drawnPart.GetComponent<SpriteRenderer>();
         drawController.OnLineFinished.AddListener(VerifyStroke);
     }
 
@@ -44,10 +39,6 @@ public class PartToDraw : MonoBehaviour
             .Average();
 
         if ((deviationByLine + deviationByCollider) / 2f < maxDeviation) 
-        { 
-            drawnPartSpriteRenderer.enabled = true;
-            levelUI.DelayShowResult(0.75f); 
-        }
-        
+            OnPartDrawed.Invoke();
     }
 }
