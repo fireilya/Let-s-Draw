@@ -40,12 +40,21 @@ public class LevelUI : MonoBehaviour
 
     void Start()
     {
-        timeIndicator.fillAmount = 1;
-        TimeSection.SetActive(drawController.State.isDrawTimeLimitEnabled);
-        collisionButton.image.color = drawController.State.isCollisionEnabled || !collisionButton.interactable ? enabledColor : comonColor;
-        timeButton.image.color = drawController.State.isDrawTimeLimitEnabled || !timeButton.interactable ? enabledColor : comonColor;
-        eraseButton.image.color = drawController.State.isEraseEnabled || !eraseButton.interactable ? enabledColor : comonColor;
-        moveSignalButton.image.color = drawController.State.isMoveSignalEnabled || !moveSignalButton.interactable ? enabledColor : comonColor;
+        if (timeIndicator != null) timeIndicator.fillAmount = 1;
+
+        if (TimeSection != null) TimeSection.SetActive(drawController.State.isDrawTimeLimitEnabled);
+
+        if (collisionButton != null) 
+            collisionButton.image.color = drawController.State.isCollisionEnabled || !collisionButton.interactable ? enabledColor : comonColor;
+
+        if (timeButton != null) 
+            timeButton.image.color = drawController.State.isDrawTimeLimitEnabled || !timeButton.interactable ? enabledColor : comonColor;
+
+        if (eraseButton != null) 
+            eraseButton.image.color = drawController.State.isEraseEnabled || !eraseButton.interactable ? enabledColor : comonColor;
+
+        if (moveSignalButton != null)
+            moveSignalButton.image.color = drawController.State.isMoveSignalEnabled || !moveSignalButton.interactable ? enabledColor : comonColor;
     }
 
     // Update is called once per frame
@@ -55,7 +64,7 @@ public class LevelUI : MonoBehaviour
         {
             var currentDrawingTime = drawController.State.currentDrawingTime;
             var drawingTimeLimit = drawController.State.drawingTimeLimit;
-            timeIndicator.fillAmount = (drawingTimeLimit - currentDrawingTime) / drawingTimeLimit;
+            if (timeIndicator != null) timeIndicator.fillAmount = (drawingTimeLimit - currentDrawingTime) / drawingTimeLimit;
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))

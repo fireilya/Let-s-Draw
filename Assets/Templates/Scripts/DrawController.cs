@@ -73,7 +73,7 @@ public class DrawController : MonoBehaviour
 
     void Awake()
     {
-        audioSource.time = currentAudioSourcePlayTime;
+        if (audioSource != null) audioSource.time = currentAudioSourcePlayTime;
         State.isCollisionEnabled = isLineWithColider;
         State.isEraseEnabled = !isLineDissapear;
         State.drawingTimeLimit = drawingTimeLimit;

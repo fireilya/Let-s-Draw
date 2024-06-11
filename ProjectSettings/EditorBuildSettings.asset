@@ -6,21 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/Templates/Scenes/MainMenu.unity
     guid: daba8e0f3b834a8468f62b09cb8896d3
   - enabled: 1
-    path: Assets/Scenes/Levels/DrawPart.unity
+    path: Assets/Templates/Scenes/Examples/DrawPart.unity
     guid: d0d45b9e45133ce45bb3349224bb19cb
   - enabled: 1
-    path: Assets/Scenes/Levels/GoToFinish.unity
+    path: Assets/Templates/Scenes/Examples/GoToFinish.unity
     guid: 8685c9069e9a24c46bdfcada7e7e2610
   - enabled: 1
-    path: Assets/Scenes/Levels/DeleteExcess.unity
+    path: Assets/Templates/Scenes/Examples/DeleteExcess.unity
     guid: bee540a6e0d5f134ca4f978481d21224
   - enabled: 1
-    path: Assets/Scenes/Levels/RunAway.unity
+    path: Assets/Templates/Scenes/Examples/RunAway.unity
     guid: ae5541cd15ab0d64bb93934adcb1b357
   - enabled: 1
-    path: Assets/Scenes/Levels/DrawLearning.unity
+    path: Assets/Templates/Scenes/Examples/DrawLearning.unity
     guid: 2410bf57439db7d4c9474d6ea85a87e2
   m_configObjects: {}
