@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,13 @@ public class PartToDraw : MonoBehaviour
 
     private PolygonCollider2D poligonCollider;
 
-    public UnityEvent OnPartDrawed = new UnityEvent();
+    public UnityEvent OnPartDrawn = new UnityEvent();
 
     void Start()
     {
         poligonCollider = GetComponent<PolygonCollider2D>();
+        if (poligonCollider == null )
+        { throw new Exception("Please add poligon colider 2D to this object"); }
         drawController.OnLineFinished.AddListener(VerifyStroke);
     }
 
@@ -39,6 +42,6 @@ public class PartToDraw : MonoBehaviour
             .Average();
 
         if ((deviationByLine + deviationByCollider) / 2f < maxDeviation) 
-            OnPartDrawed.Invoke();
+            OnPartDrawn.Invoke();
     }
 }

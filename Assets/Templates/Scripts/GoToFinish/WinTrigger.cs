@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Target : MonoBehaviour
+public class WinTrigger : MonoBehaviour
 {
-    [SerializeField]
-    private LevelUI UI;
+    public UnityEvent OnFinishReached = new UnityEvent();
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Finish") UI.ShowLevelResult();
+        if (collision.gameObject.tag == "Finish") OnFinishReached.Invoke();
     }
 }

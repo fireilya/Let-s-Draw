@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
+using UnityEngine.Events;
 
 class BoundingBox
 {
@@ -40,9 +41,6 @@ public class ExtraPart : MonoBehaviour
     [SerializeField]
     private DrawController drawController;
 
-    [SerializeField]
-    private LevelUI levelUI;
-
     [SerializeField, Range(0.0f, 1.0f)]
     private float linePointsInsideColiderRatioTreshold;
 
@@ -50,6 +48,8 @@ public class ExtraPart : MonoBehaviour
     private float lineCoverColiderRatioTreshold;
 
     private PolygonCollider2D polygonCollider;
+
+    public UnityEvent OnPartDeleted = new UnityEvent();
     void Start()
     {
         polygonCollider = GetComponent<PolygonCollider2D>();
@@ -81,6 +81,6 @@ public class ExtraPart : MonoBehaviour
 
         if (intersectionBoundingBox.Area/colliderBoundingBox.Area > lineCoverColiderRatioTreshold &&
             linePointsInsideColliderCount/(float)linePoints.Count > linePointsInsideColiderRatioTreshold)
-        { levelUI.DelayShowResult(0.75f); Destroy(gameObject); }
+        { OnPartDeleted.Invoke(); Destroy(gameObject); }
     }
 }

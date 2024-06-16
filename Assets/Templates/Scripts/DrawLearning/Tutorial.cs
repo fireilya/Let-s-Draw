@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Tutorial : MonoBehaviour
 {
@@ -12,9 +13,6 @@ public class Tutorial : MonoBehaviour
 
     [SerializeField]
     private DrawController drawController;
-
-    [SerializeField]
-    private LevelUI levelUI;
 
     [SerializeField]
     private GameObject marker;
@@ -35,6 +33,8 @@ public class Tutorial : MonoBehaviour
     private int nextPointIndex = 0;
     private bool isLineFinished = false;
     private float markerOpacityStep;
+
+    public UnityEvent OnTutorialFinished = new UnityEvent();
 
     void Start()
     {
@@ -67,7 +67,7 @@ public class Tutorial : MonoBehaviour
         if (isLineFinished)
         {
             isLineFinished = false;
-            if (currentDrawObjectIndex == partsToDraw.Length - 1) { levelUI.DelayShowResult(0.75f); return; }
+            if (currentDrawObjectIndex == partsToDraw.Length - 1) { OnTutorialFinished.Invoke(); return; }
             EnableNextObject();
         }
     }

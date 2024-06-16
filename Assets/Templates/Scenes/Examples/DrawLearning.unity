@@ -261,11 +261,25 @@ MonoBehaviour:
   - {fileID: 292508087}
   - {fileID: 120659982}
   drawController: {fileID: 579661961}
-  levelUI: {fileID: 165039295}
   marker: {fileID: 2716462872297188773, guid: 53cb7dcf0615fe44f9d4a809b0fcb99c, type: 3}
   firstMarkerOpacity: 0.806
-  maxDeviation: 0.21
+  maxDeviation: 0.2
   maxShownMarkersCount: 5
+  OnTutorialFinished:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1462866533}
+        m_TargetAssemblyTypeName: DrawLearningWinLink, Assembly-CSharp
+        m_MethodName: Win
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &71162339
 Transform:
   m_ObjectHideFlags: 0
@@ -3557,6 +3571,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1384386211}
   m_CullTransparentMesh: 1
+--- !u!1 &1462866531
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1462866532}
+  - component: {fileID: 1462866533}
+  m_Layer: 0
+  m_Name: WinLink
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1462866532
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462866531}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.79788613, y: -1.550935, z: -0.3956649}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1462866533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462866531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: febb7b14841fb2644b70532eb7f4a1d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelUI: {fileID: 165039295}
 --- !u!1 &1471965532
 GameObject:
   m_ObjectHideFlags: 0
@@ -5303,3 +5362,4 @@ SceneRoots:
   - {fileID: 1793764890}
   - {fileID: 1094561698}
   - {fileID: 1252334578}
+  - {fileID: 1462866532}
