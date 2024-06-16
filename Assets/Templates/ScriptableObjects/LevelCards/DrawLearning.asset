@@ -21,7 +21,7 @@ MonoBehaviour:
     \u043B\u0438\u043D\u0438\u0439 \u043F\u043E\u0441\u043B\u0435 \u0437\u0430\u043C\u044B\u043A\u0430\u043D\u0438\u044F
     \u043A\u043E\u043D\u0442\u0443\u0440\u0430, \u043F\u043E\u044F\u0432\u043B\u044F\u0435\u0442\u0441\u044F
     \u0447\u0430\u0441\u0442\u044C \u0440\u0438\u0441\u0443\u043D\u043A\u0430."
-  levelPreview: {fileID: 21300000, guid: fa6765c3e8a731b438711a7da426502e, type: 3}
+  levelPreview: {fileID: 21300000, guid: eaa7239776b5d11458d7e692d29eaaf9, type: 3}
   levelSceneIndex: 5
   levelFontData: {fileID: 11400000, guid: 7f1a0525e9e834c438a0a476386bcbba, type: 2}
   levelButtonData: {fileID: 11400000, guid: dfbc2aa2595d7cb4b8d91ac2643f02fa, type: 2}
